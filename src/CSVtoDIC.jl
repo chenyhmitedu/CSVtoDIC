@@ -2,7 +2,7 @@ module CSVtoDIC
 
 using CSV, DataFrames
 
-function source(name::String = "../ReadGTAP/src/output/")  
+function source(name::String = "./src/output/")  
     csv_files = filter(f -> endswith(f, ".csv"), readdir(name))
     n         = length(csv_files)
     dic_df    = Dict()
@@ -34,27 +34,28 @@ function source(name::String = "../ReadGTAP/src/output/")
             s[str_tmp]    = Symbol.(Vector(dic_df[str_tmp][:, 1]))
         end 
     end
+    return d, s
+end
 
     # Fill up each missing key element with a (k, 0) 
-    function fullspace(dict::Dict, args...)
-        key_space = collect(Iterators.product(args...))
-        for k in key_space
-            if !haskey(dict, k)
-                dict[k] = 0
-            end
+function fullspace(dict::Dict, args...)
+    key_space = collect(Iterators.product(args...))
+    for k in key_space
+        if !haskey(dict, k)
+            dict[k] = 0
         end
-        return dict
     end
-
-    function fullspace(dict::Dict, args)
-        key_space = collect(args)
-        for k in key_space
-            if !haskey(dict, k)
-                dict[k] = 0
-            end
-        end
-        return dict
-    end
+    return dict
 end
+function fullspace(dict::Dict, args)
+    key_space = collect(args)
+    for k in key_space
+        if !haskey(dict, k)
+            dict[k] = 0
+        end
+    end
+    return dict
+end
+
 
 end # module CSVtoDIC
