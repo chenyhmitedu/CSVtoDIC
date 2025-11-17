@@ -2,8 +2,6 @@ module CSVtoDIC
 
 using CSV, DataFrames
 
-export source, fullspace
-
 function source(name::String = "./src/output/")  
     csv_files = filter(f -> endswith(f, ".csv"), readdir(name))
     n         = length(csv_files)
@@ -59,5 +57,6 @@ function fullspace(dict::Dict, args)
     return dict
 end
 
+export source, fullspace
 
 end # module CSVtoDIC
