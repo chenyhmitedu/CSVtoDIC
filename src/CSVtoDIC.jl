@@ -57,6 +57,6 @@ function fullspace(dict::Dict, args)
     return dict
 end
 
-export source, fullspace
+#export source, fullspace
 
 end # module CSVtoDIC
