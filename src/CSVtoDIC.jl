@@ -2,7 +2,7 @@ module CSVtoDIC
 
 using CSV, DataFrames
 
-function source(name::String = "./src/output/")  
+function source(name::String)  
     csv_files = filter(f -> endswith(f, ".csv"), readdir(name))
     n         = length(csv_files)
     dic_df    = Dict()
