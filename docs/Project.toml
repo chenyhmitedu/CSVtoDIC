@@ -1,0 +1,6 @@
+[deps]
+CSVtoDIC = "cf815f9a-3c92-448a-b56b-77b95c7ee9f9"
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+
+[sources]
+CSVtoDIC = {path = ".."}
