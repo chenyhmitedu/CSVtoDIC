@@ -15,5 +15,5 @@ makedocs(
 )=#
 
 deploydocs(
-    repo = "https://github.com/chenyhmitedu/CSVtoDIC.git",
+    repo = "github.com/chenyhmitedu/CSVtoDIC.git",
 )
