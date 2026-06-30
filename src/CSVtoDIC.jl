@@ -79,18 +79,9 @@ function source(name::String)
     return d, s
 end
 
-    # Fill up each missing key element with a (k, 0) 
+# Fill up each missing key element with a (k, 0)
 function fullspace(dict::Dict, args...)
     key_space = collect(Iterators.product(args...))
-    for k in key_space
-        if !haskey(dict, k)
-            dict[k] = 0
-        end
-    end
-    return dict
-end
-function fullspace(dict::Dict, args)
-    key_space = collect(args)
     for k in key_space
         if !haskey(dict, k)
             dict[k] = 0
