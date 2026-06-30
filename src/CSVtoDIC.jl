@@ -90,6 +90,19 @@ function fullspace(dict::Dict, args...)
     return dict
 end
 
+# This method is needed since the previous method's key space will always be a tuple, due to the 
+# fact that Iterators.product() always returns Tuple
+# Our dictionaries may have a Symbol key like :x, rather than Tuple key like (:x,)
+function fullspace(dict::Dict, args)
+    key_space = collect(args)
+    for k in key_space
+        if !haskey(dict, k)
+            dict[k] = 0
+        end
+    end
+    return dict
+end
+
 export source, fullspace
 
 end # module CSVtoDIC
