@@ -79,7 +79,32 @@ function source(name::String)
     return d, s
 end
 
-# Fill up each missing key element with a (k, 0)
+"""
+    fullspace(dict::Dict, args...)
+    fullspace(dict::Dict, args)
+
+Fill up each missing key element with (k, 0).
+
+Dictionaries with multi-dimensional keys will be processed by the first method, which
+returns dictionaries with Tuple keys; dictionaries with one-dimensional keys will be
+processed by the second method, which returns dictionaries with a Symbol key.
+
+# Arguments
+- `dict::Dict`: the dictionary with missing keys
+- 'args...': each argument is the complete set of each key element
+- 'args': the complete set of the single key element
+
+# Examples
+
+```julia
+d = Dict{Tuple{Symbol,Symbol},Float64}()
+fullspace(d, [:A,:B], [:X,:Y])
+
+d = Dict{Symbol,Float64}()
+fullspace(d, [:A,:B])
+```
+
+"""
 function fullspace(dict::Dict, args...)
     key_space = collect(Iterators.product(args...))
     for k in key_space
